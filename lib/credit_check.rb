@@ -24,12 +24,20 @@ class CreditCheck
     end
   end
 
+  def other_digits
+    reverse = @card.digits
+    digit_index = reverse.map.with_index do |number, index|
+      number if index.even?
+    end
+    digit_index.compact
+  end
+
   def sum_digits
-    double_digit.sum
+    (other_digits + double_digit).sum
   end
 
   def validity
-    if sum_digits % 10
+    if sum_digits % 10 == 0
       "The number is valid!"
     else
       "The number is invalid!"
