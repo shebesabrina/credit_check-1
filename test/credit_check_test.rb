@@ -57,4 +57,12 @@ class CreditCheckTest < Minitest::Test
     assert_equal "The number is invalid!", credit_check_6.validity
   end
 
+  def test_amex_cards
+    credit_check_1 = CreditCheck.new(342804633855673)
+    credit_check_2 = CreditCheck.new(342801633855673)
+
+    assert_equal "The number is valid!", credit_check_1.validity
+    assert_equal "The number is invalid!", credit_check_2.validity
+  end
+
 end
