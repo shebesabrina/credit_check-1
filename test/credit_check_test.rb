@@ -21,4 +21,12 @@ class CreditCheckTest < Minitest::Test
     assert_equal result, @credit_check.double_digit
   end
 
+  def test_sum_array
+    assert_equal 35, @credit_check.sum_digits
+  end
+
+  def test_if_valid
+    assert_equal "The number is valid!", @credit_check.validity
+  end
+
 end

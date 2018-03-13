@@ -24,4 +24,15 @@ class CreditCheck
     end
   end
 
+  def sum_digits
+    double_digit.sum
+  end
+
+  def validity
+    if sum_digits % 10
+      "The number is valid!"
+    else
+      "The number is invalid!"
+    end
+  end
 end
