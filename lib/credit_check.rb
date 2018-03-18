@@ -1,17 +1,23 @@
 require 'pry'
 
 class CreditCheck
+
   attr_reader :card
+
   def initialize(card)
-    @card = card
+    @card = card.to_i
   end
 
   def times_2
     reverse = @card.digits
-    digit_index = reverse.map.with_index do |number, index|
-      number * 2 if index.odd?
+    reverse.map.with_index do |number, index|
+      if index.odd?
+        number * 2
+      else
+        number
+      end
     end
-    digit_index.compact
+
   end
 
   def double_digit
@@ -24,23 +30,12 @@ class CreditCheck
     end
   end
 
-  def other_digits
-    reverse = @card.digits
-    digit_index = reverse.map.with_index do |number, index|
-      number if index.even?
-    end
-    digit_index.compact
-  end
-
   def sum_digits
-    (other_digits + double_digit).sum
+    double_digit.sum
   end
 
   def validity
-    if sum_digits % 10 == 0
-      "The number is valid!"
-    else
-      "The number is invalid!"
-    end
+      return "The number is valid!" if sum_digits % 10 == 0
+      return "The number is invalid!"
   end
 end
