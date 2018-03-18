@@ -1,7 +1,6 @@
 require 'pry'
 
 class CreditCheck
-
   attr_reader :card
 
   def initialize(card)
@@ -17,7 +16,6 @@ class CreditCheck
         number
       end
     end
-
   end
 
   def double_digit
@@ -35,7 +33,10 @@ class CreditCheck
   end
 
   def validity
-      return "The number is valid!" if sum_digits % 10 == 0
-      return "The number is invalid!"
+    if (sum_digits % 10).zero?
+      'The number is valid!'
+    else
+      'The number is invalid!'
+    end
   end
 end
